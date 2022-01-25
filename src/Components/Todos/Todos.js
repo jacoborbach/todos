@@ -30,36 +30,30 @@ export default function Todos() {
     setTodos(newArry);
   };
 
-  const todosMap = todos.map((todo) => (
-    <div key={todo.todo_id}>
-      {todo.status === "Open" ? (
-        <p className="todo-list" onClick={() => handleTodo(todo.todo_id)}>
-          {todo.description}
-        </p>
-      ) : (
-        <p
-          className="todo-list-closed"
-          onClick={() => handleTodo(todo.todo_id)}
-        >
-          {todo.description}
-        </p>
-      )}
-    </div>
-  ));
-
   const handleSubmit = (e) => {
     e.preventDefault();
+
     axios
       .post("/api/addtodo", { todo: newTodo, user_id: user.id })
       .then((res) => {
-        setTodos((current) => [
-          ...current,
-          {
-            id: res.data.id,
-            description: res.data.description,
-            status: res.data.status,
-          },
-        ]);
+        if (todos[0]) {
+          setTodos((current) => [
+            ...current,
+            {
+              id: res.data.id,
+              description: res.data.description,
+              status: res.data.status,
+            },
+          ]);
+        } else {
+          setTodos([
+            {
+              todo_id: res.data.id,
+              description: res.data.description,
+              status: res.data.status,
+            },
+          ]);
+        }
       })
       .catch((err) => console.log(err));
   };
@@ -75,12 +69,33 @@ export default function Todos() {
     </form>
   );
 
+  console.log(todos);
   return (
     <div>
       <div className="todos-container">
         <h2 id="user">{user.user}'s Todos</h2>
         {/* map of todos */}
-        {todos[0] ? todosMap : null}
+        {todos[0]
+          ? todos.map((todo) => (
+              <div key={todo.todo_id}>
+                {todo.status === "Open" ? (
+                  <p
+                    className="todo-list"
+                    onClick={() => handleTodo(todo.todo_id)}
+                  >
+                    {todo.description}
+                  </p>
+                ) : (
+                  <p
+                    className="todo-list-closed"
+                    onClick={() => handleTodo(todo.todo_id)}
+                  >
+                    {todo.description}
+                  </p>
+                )}
+              </div>
+            ))
+          : null}
         <AddIcon id="addIcon" onClick={() => setShowAdd(true)} />
         {showAdd ? addtodoInp : null}
       </div>

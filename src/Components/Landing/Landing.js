@@ -16,7 +16,11 @@ export default function Landing() {
       axios
         .get(`/api/gettodos/${user}`)
         .then((res) => {
-          setUser({ id: res.data[0].id, user: res.data[0].users });
+          if (res.data[0]) {
+            setUser({ id: res.data[0].id, user: res.data[0].users });
+          } else {
+            setUser({ id: res.data.id, user: res.data.users });
+          }
           setTodos(res.data);
         })
         .then((res) => navigate("/todos"))
@@ -24,6 +28,7 @@ export default function Landing() {
     }
   };
 
+  console.log(user);
   return (
     <div className="Landing">
       {/* Render Input */}
