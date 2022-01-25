@@ -1,9 +1,9 @@
 import React, { useContext, useState } from "react";
 import { UserContext } from "../../UserContext";
 import { TodosContext } from "../../TodosContext";
-import "./Todos.css";
-import AddIcon from "@mui/icons-material/Add";
 import axios from "axios";
+import AddIcon from "@mui/icons-material/Add";
+import "./Todos.css";
 
 export default function Todos() {
   const { user, setUser } = useContext(UserContext);
@@ -32,7 +32,6 @@ export default function Todos() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
     axios
       .post("/api/addtodo", { todo: newTodo, user_id: user.id })
       .then((res) => {

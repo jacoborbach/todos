@@ -30,18 +30,23 @@ export default function Landing() {
 
   console.log(user);
   return (
-    <div className="Landing">
-      {/* Render Input */}
-      <form onSubmit={handleSubmit}>
-        <input
-          value={user}
-          placeholder="Please enter your name"
-          onChange={(e) => setUser(e.target.value)}
-        />
-        <button type="submit" onClick={handleSubmit}>
-          Submit
-        </button>
-      </form>
+    <div>
+      <div className="Landing">
+        {/* Render Input */}
+        <form onSubmit={handleSubmit}>
+          <label id="label">Please Enter a Name</label>
+          <br />
+          <input
+            id="input"
+            value={user}
+            placeholder="Please enter your name"
+            onChange={(e) => setUser(e.target.value)}
+          />
+          <button type="submit" onClick={handleSubmit}>
+            Submit
+          </button>
+        </form>
+      </div>
     </div>
   );
 }
