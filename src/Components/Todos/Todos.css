@@ -1,0 +1,57 @@
+.todos-container {
+  height: 500px;
+  width: 600px;
+  background-color: maroon;
+  border: black 6px dotted;
+  margin: 0 auto;
+  color: white;
+  border-radius: 20%;
+  margin-top: 30px;
+  position: relative;
+}
+
+.todo-list {
+  border-bottom: solid black 1px outset;
+}
+
+.todo-list-closed {
+  border-bottom: solid black 1px outset;
+  text-decoration: line-through;
+}
+
+#user {
+  padding-bottom: 10px;
+  border-bottom: solid 3px black;
+}
+
+#addIcon {
+  position: absolute;
+  float: right;
+  bottom: 50px;
+  right: 50px;
+  font-size: 40px;
+  cursor: pointer;
+}
+#addIcon:hover {
+  font-size: 50px;
+  transition: 0.8s;
+}
+
+#addtodoInp {
+  position: absolute;
+  right: 0;
+  left: 0;
+  margin-left: auto;
+  margin-right: auto;
+  bottom: 50px;
+  width: 300px;
+  background: none;
+  font-size: 20px;
+  color: white;
+  border: none;
+  border-bottom: white 1px solid;
+}
+
+::placeholder {
+  color: white;
+}
