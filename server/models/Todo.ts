@@ -5,9 +5,7 @@ import {
   Column,
   OneToMany,
 } from "typeorm";
-
 import { ObjectType, Field, ID } from "type-graphql";
-
 import { User } from "./User";
 
 @Entity()
@@ -17,16 +15,16 @@ export class Todo extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: string;
 
-  @Field(() => ID)
-  @OneToMany(() => User, (user) => user.id)
-  @Column()
-  user_id: string;
+  // @Field(() => ID)
+  // @OneToMany(() => User, (user) => user.id)
+  // @Column()
+  // user_id: string;
 
   @Field(() => String)
   @Column()
   description: string;
 
-  @Field(() => String)
-  @Column()
-  status: string;
+  @Field(() => Boolean)
+  @Column({ default: true })
+  status: boolean;
 }
